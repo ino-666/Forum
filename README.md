@@ -1,3 +1,7 @@
+phpを使って掲示板を作りました
+
+Dockerを使ってMysqlをインストールしています。
+
 # フォルダの構成
 - `private/database.php`... DBの設定が入っております
 - `private/exception_handler.php`... エラー画面用のファイルです
