@@ -4,7 +4,6 @@
  * ---------------------------------------- */
 require_once 'private/bootstrap.php';
 
-/** @var PDO $dbh データベースハンドラ */
 
 /* ----------------------------------------
  * セッション開始
@@ -16,15 +15,6 @@ require_once 'private/bootstrap.php';
 $statement = $dbh->prepare('SELECT * FROM `articles`');
 $statement->execute();
 $articles = $statement->fetchAll();
-
-
-
-// ダミーデータ
-//$articles = [
-//  ['id' => 1, 'name' => 'Dummy', 'content' => 'Dummyコンテンツ', 'created_at' => '2020-12-09 00:00:00', 'updated_at' => '2020-12-09 00:00:00'],
-//  ['id' => 2, 'name' => 'ダミー', 'content' => 'ダミーContent', 'created_at' => '2020-12-09 12:00:00', 'updated_at' => '2020-12-09 12:00:00'],
-//];
-
 ?>
 
 <!-- 描画するHTML -->
