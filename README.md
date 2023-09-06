@@ -1,8 +1,13 @@
-phpを使って掲示板を作りました
+# 掲示板
 
-Dockerを使ってMysqlをインストールしています。
+## 構成
+- PHP: 7.4.12
+- データベース: MySQL 5.7
+- ウェブサーバー: Apache
 
-# フォルダの構成
+これらを用いる際にDockerを使用しています。
+
+## フォルダの構成
 - `private/database.php`... DBの設定が入っております
 - `private/exception_handler.php`... エラー画面用のファイルです
 - `private/helper.php`... ヘルパー関数が定義されたファイルです
@@ -14,10 +19,21 @@ Dockerを使ってMysqlをインストールしています。
 - `index.php`... トップ画面です
 - `register.php`... 登録完了画面です
 
-# 開発環境の立ち上げ
+## 開発環境の立ち上げ
+1. このリポジトリをクローンします。
+```bash
+git clone https://github.com/Takumi-666/docker-php-keiziban.git
+```
+2. プロジェクトディレクトリに移動します。
+```shell
+cd docker-php-keiziban
+```
+3.Docker Composeを使用してアプリケーションを起動します。
 ```shell
 docker-compose up -d
 ```
-ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
+4.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
+
+＊Dockerを立ち上げてすぐだとエラーが出る場合があります。エラーが出た場合10秒ほど待ってサイトをリロードしてください。
 
 
