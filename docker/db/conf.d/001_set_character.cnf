@@ -3,3 +3,17 @@ character-set-server=utf8mb4
 
 [client]
 default-character-set=utf8mb4
+
+
+
+/*
+[mysqld] セクション:
+character-set-server=utf8mb4: この設定は、MySQLサーバーがデフォルトの文字セットとして 
+utf8mb4 を使用するように指定しています。utf8mb4 は、Unicode文字セットの一部であり、
+多くの言語や特殊文字をサポートします。この設定により、MySQLサーバー内のテキストデータは utf8mb4 エンコーディングで保存および操作されます。
+
+[client] セクション:
+default-character-set=utf8mb4: この設定は、MySQLクライアント（コマンドラインクライアントなど）が
+デフォルトの文字セットとして utf8mb4 を使用するように指定しています。
+これにより、MySQLクライアントがMySQLサーバーとの通信時に適切なエンコーディングを使用することが確保されます。
+*/

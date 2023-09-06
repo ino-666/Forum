@@ -22,19 +22,10 @@ $articles = $statement->fetchAll();
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>掲示板</title>
-    <style>
-        textarea {
-            resize: vertical;
-        }
-        textarea, input[type=text] {
-            border: solid 1px gray;
-            padding: 4px;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -65,7 +56,7 @@ $articles = $statement->fetchAll();
         </ul>
         <div>
             <form action="confirm.php" method="post">
-                <table>
+            <table width=”1000″>
                     <thead>
                     <tr>
                         <th colspan="2">新規投稿</th>

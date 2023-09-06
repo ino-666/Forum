@@ -14,9 +14,10 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 1
   web:
     build:
-      context: docker/web
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
       - 80:80
+

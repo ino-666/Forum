@@ -1,3 +1,16 @@
 [mysqld]
-default-time-zone = '+9:00'
-explicit_defaults_for_timestamp = 1
+default-time-zone = '+9:00'　--タイムゾーンは、日本標準時（JST）
+explicit_defaults_for_timestamp = 1  
+
+
+
+/*
+explicit_defaults_for_timestamp = 1:
+この設定は、MySQLバージョン5.6以降で導入された機能で、
+TIMESTAMP型の列に明示的なデフォルト値を指定することを要求します。
+これは、TIMESTAMP列がNULLでない場合、明示的なデフォルト値（例: CURRENT_TIMESTAMP）を
+指定しない限り、デフォルト値が設定されないことを意味します。この設定が有効になっている場合、
+TIMESTAMP列にデフォルト値を明示的に指定しないと、エラーが発生します。
+
+この設定により、データの整合性や予測可能性が向上し、意図しない動作を防ぐのに役立ちます。
+*/

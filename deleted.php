@@ -55,15 +55,17 @@ unset($_SESSION['id']);
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>削除成功</title>
 </head>
 <body>
     <header>
-        <h1>削除成功</h1>
+        <h1>掲示板</h1>
     </header>
     <main>
+    <div class="box3">削除しました</div>
         <a href="index.php">戻る</a>
     </main>
     <footer>

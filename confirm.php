@@ -40,16 +40,17 @@ $_SESSION['token'] = $token;
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>投稿確認</title>
 </head>
 <body>
     <header>
-        <h1>確認</h1>
+        <h1>掲示板</h1>
     </header>
     <main>
-        <div>下記の内容で投稿しますがよろしいですか?</div>
+        <div class="box3">下記の内容で投稿しますがよろしいですか?</div>
         <table>
             <tbody>
             <tr><th>名前</th><td><?= htmlspecialchars($name )?></td></tr>
@@ -59,6 +60,7 @@ $_SESSION['token'] = $token;
         <form action="register.php" method="post">
             <input type="hidden" name="token" value="<?= $token ?>">
             <button type="submit">投稿</button>
+            <a href="index.php">戻る</a>
         </form>
     </main>
     <footer>

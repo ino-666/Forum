@@ -52,6 +52,7 @@ $_SESSION['token'] = $token;
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>投稿編集</title>
@@ -68,7 +69,7 @@ $_SESSION['token'] = $token;
 </head>
 <body>
     <header>
-        <h1>投稿編集</h1>
+        <h1>掲示板</h1>
     </header>
     <main>
         <form action="edit_complete.php" method="post">
@@ -86,6 +87,7 @@ $_SESSION['token'] = $token;
                 </tbody>
             </table>
             <button type="submit">編集</button>
+            <a href="index.php">戻る</a>
         </form>
     </main>
     <footer>
