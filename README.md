@@ -38,6 +38,12 @@ docker-compose up -d
 
 ## デモ動画
 
+
+https://github.com/Takumi-666/Forum/assets/108921895/2c3446fd-5bb8-4f4f-a743-130ece4f544c
+
+
+
+
 [https://www.youtube.com/watch?v=U2eRuuZvf5Y](https://www.youtube.com/watch?v=U2eRuuZvf5Y)
 
 ## スクリーンショット
