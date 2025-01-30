@@ -36,12 +36,6 @@ docker-compose up -d
 
 ＊Dockerを立ち上げてすぐだとエラーが出る場合があります。エラーが出た場合10秒ほど待ってサイトをリロードしてください。
 
-## デモ動画
-
-
-https://github.com/Takumi-666/Forum/assets/108921895/2c3446fd-5bb8-4f4f-a743-130ece4f544c
-
-
 
 ## スクリーンショット
 
