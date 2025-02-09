@@ -48,3 +48,7 @@ docker-compose up -d
 ## スクリーンショット
 
 ![スクリーンショット](/screenshots/screenshot1.png.png)
+
+## デモ動画
+
+https://github.com/user-attachments/assets/69f4fd8e-0c7d-4a21-a582-fce57692ec13
