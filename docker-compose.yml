@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   db:
     image: mysql:5.7.32
@@ -14,10 +14,9 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 1
   web:
     build:
-      context: .
+      context: ./Docker
       dockerfile: ./Dockerfile
     volumes:
       - ./:/var/www/html
     ports:
       - 80:80
-

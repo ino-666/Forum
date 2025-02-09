@@ -29,13 +29,19 @@
 git clone https://github.com/ino-666/Forum.git
 ```
 
-2.Docker Compose を使用してアプリケーションを起動します。
+2. プロジェクトディレクトリに移動します。
+
+```shell
+cd Forum
+```
+
+3.Docker Compose を使用してアプリケーションを起動します。
 
 ```shell
 docker-compose up -d
 ```
 
-3.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
+4.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
 
 ＊Docker を立ち上げてすぐだとエラーが出る場合があります。エラーが出た場合 10 秒ほど待ってサイトをリロードしてください。
 
