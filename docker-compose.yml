@@ -1,22 +1,35 @@
 version: "3.7"
 services:
   db:
-    image: mysql:5.7.32
+    image: mysql:8.0
     volumes:
       - ./docker/db/conf.d:/etc/mysql/conf.d
       - ./docker/db/init_data:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+    env_file:
+      - .env
     environment:
-      MYSQL_DATABASE: bbs
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: 1
+    networks:
+      - mynetwork
+
   web:
     build:
-      context: ./Docker
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./Docker/Dockerfile
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www/html:cached
     ports:
       - 80:80
+    env_file:
+      - .env
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
