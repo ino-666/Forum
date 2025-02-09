@@ -2,11 +2,9 @@
 
 ## 使用技術
 
-- PHP: 7.4.12
-- データベース: MySQL 5.7
+- PHP: 8.2
+- データベース: MySQL 8.0
 - ウェブサーバー: Apache
-
-これらを用いる際に Docker を使用しています。
 
 ## フォルダの構成
 
@@ -23,27 +21,49 @@
 
 ## 開発環境の立ち上げ
 
-1. このリポジトリをクローンします。
+### 1. このリポジトリをクローンします。
 
 ```bash
 git clone https://github.com/ino-666/Forum.git
 ```
 
-2. プロジェクトディレクトリに移動します。
+### 2. プロジェクトディレクトリに移動します。
 
 ```shell
 cd Forum
 ```
 
-3.Docker Compose を使用してアプリケーションを起動します。
+### 3. .env ファイルを作成する
+
+プロジェクトのルートディレクトリに .env ファイルを作成し、以下の内容をコピー＆ペーストしてください。
+
+```.env
+DB_HOST=db
+DB_PORT=3306
+DB_NAME=bbs
+DB_USER=user
+DB_PASSWORD=password
+```
+
+###### ※DB_PASSWORD の項目はあくまで一例です。自分が分かりやすいものに修正して使ってください。
+
+###### ※パスワード 12 文字以上、大文字と小文字、数字を含める、!, @, #, $, %, ^, &, \*などの特殊文字を含めるとセキュリティ的に良いです。
+
+### 4. Docker Compose を使用してアプリケーションを起動します。
+
+・build
+
+```shell
+docker compose build --no-cache
+```
+
+・Doker の立ち上げ
 
 ```shell
 docker-compose up -d
 ```
 
-4.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
-
-＊Docker を立ち上げてすぐだとエラーが出る場合があります。エラーが出た場合 10 秒ほど待ってサイトをリロードしてください。
+### 5.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
 
 ## スクリーンショット
 
