@@ -3,10 +3,10 @@ steps:
     args:
       [
         "build",
+        "-f",
+        "Docker/Dockerfile",
         "-t",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:$COMMIT_SHA",
-        "-f",
-        "Forum/Docker/Dockerfile",
         ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
