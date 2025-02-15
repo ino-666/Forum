@@ -21,3 +21,5 @@ options:
 substitutions:
   REGION: "us-central1" # GCPのリージョン
   IMAGE_NAME: "forum-php-mysql" # ビルドするDockerイメージ名
+  REPO_NAME: "forum-docker" # Artifact Registry のリポジトリ名
+
