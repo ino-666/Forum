@@ -33,7 +33,7 @@ git clone https://github.com/ino-666/Forum.git
 cd Forum
 ```
 
-### 3. .env ファイルを作成する
+### 3. .env ファイルを作成する。
 
 プロジェクトのルートディレクトリに .env ファイルを作成し、以下の内容をコピー＆ペーストしてください。
 
