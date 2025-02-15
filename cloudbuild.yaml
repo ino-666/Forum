@@ -4,20 +4,20 @@ steps:
       [
         "build",
         "-t",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA",
+        "$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA",
         ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA",
+        "$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA",
       ]
 images:
-  - "$_REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA"
+  - "$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA"
 logsBucket: "gs://forum-cloudbuild-log-cs"
 options:
   logging: GCS_ONLY
 substitutions:
-  _REGION: "us-central1" # GCPのリージョン
+  REGION: "us-central1" # GCPのリージョン
   IMAGE_NAME: "forum-php-mysql" # ビルドするDockerイメージ名
