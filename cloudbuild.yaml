@@ -1,14 +1,16 @@
 steps:
+  - name: "gcr.io/cloud-builders/git"
+    args: ["ls-tree", "-r", "HEAD"]
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
+    args: [
         "build",
         "-f",
-        "Docker/Dockerfile",
+        "Docker/Dockerfile", # Dockerfileのパス
         "-t",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:$COMMIT_SHA",
         ".",
       ]
+
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
