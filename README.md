@@ -63,7 +63,7 @@ docker compose build --no-cache
 docker-compose up -d
 ```
 
-### 5.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください
+### 5.ブラウザで [http://localhost/index.php](http://localhost/index.php) にアクセスしてください。
 
 ## スクリーンショット
 
