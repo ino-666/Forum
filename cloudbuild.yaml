@@ -20,4 +20,4 @@ options:
   logging: GCS_ONLY
 substitutions:
   _REGION: "us-central1" # GCPのリージョン
-  _IMAGE_NAME: "forum-php-mysql" # ビルドするDockerイメージ名
+  IMAGE_NAME: "forum-php-mysql" # ビルドするDockerイメージ名
