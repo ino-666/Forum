@@ -1,3 +1,4 @@
+apiVersion: cloudbuild.googleapis.com/v1
 steps:
   - name: "gcr.io/cloud-builders/docker"
     args:
