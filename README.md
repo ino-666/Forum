@@ -27,7 +27,7 @@
 git clone https://github.com/ino-666/Forum.git
 ```
 
-### 2. プロジェクトディレクトリに移動します。
+### 2. プロジェクトディレクトリに移動します
 
 ```shell
 cd Forum
