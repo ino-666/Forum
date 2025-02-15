@@ -16,5 +16,6 @@ steps:
       ]
 images:
   - "$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME:$COMMIT_SHA"
+logsBucket: "gs://forum-cloudbuild-log-cs"
 options:
-  logsBucket: "forum-cloudbuild-log-cs"
+  logging: GCS_ONLY
