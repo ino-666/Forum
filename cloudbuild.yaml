@@ -4,7 +4,7 @@ steps:
     args: [
         "build",
         "-f",
-        "Forum/Docker/Dockerfile", # アプリケーション用 Dockerfile
+        "docker/Dockerfile", # アプリケーション用 Dockerfile
         "-t",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA", # イメージ名
         ".",
@@ -14,7 +14,7 @@ steps:
     args: [
         "build",
         "-f",
-        "Forum/Docker/Dockerfile-proxy", # Cloud SQL 接続用プロキシ Dockerfile
+        "docker/Dockerfile-proxy", # Cloud SQL 接続用プロキシ Dockerfile
         "-t",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA", # イメージ名
         ".",
