@@ -39,7 +39,6 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
-        "alpha",
         "run",
         "deploy",
         "forum-php-mysql",
@@ -49,8 +48,6 @@ steps:
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
         "--port",
         "80",
-        "--region",
-        "$_REGION",
       ]
 images:
   - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA"
