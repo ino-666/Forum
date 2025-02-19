@@ -44,8 +44,6 @@ steps:
         "forum-php-mysql",
         "--image",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
-        "--add-volume",
-        "cloudsql-credentials,type=secret,secret=forum-seacret",
         "--add-volume-mount",
         "cloudsql-credentials,/etc/cloudsql",
         "--container",
