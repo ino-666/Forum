@@ -1,3 +1,10 @@
-FROM gcr.io/cloud-sql-proxy/cloud-sql-proxy:latest
+FROM alpine:latest
 
-CMD ["/cloud_sql_proxy", "-instances=forum-cloudrun-cloudsql:us-central1:forum-app-db01=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
+# Cloud SQL Auth Proxy のダウンロード
+RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O /usr/local/bin/cloud_sql_proxy
+
+# 実行権限の付与
+RUN chmod +x /usr/local/bin/cloud_sql_proxy
+
+# プロキシの起動
+CMD ["/usr/local/bin/cloud_sql_proxy", "-instances=forum-cloudrun-cloudsql:us-central1:forum-app-db01=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
