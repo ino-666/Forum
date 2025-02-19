@@ -1,22 +1,24 @@
 steps:
   # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
-    args: [
+    args:
+      [
         "build",
         "-f",
-        "docker/Dockerfile", # アプリケーション用 Dockerfile
+        "docker/Dockerfile",
         "-t",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA", # イメージ名
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
         ".",
       ]
-  #  Cloud SQL 接続用プロキシのイメージのビルド
+  # Cloud SQL 接続用プロキシのイメージのビルド
   - name: "gcr.io/cloud-builders/docker"
-    args: [
+    args:
+      [
         "build",
         "-f",
-        "docker/Dockerfile-proxy", # Cloud SQL 接続用プロキシ Dockerfile
+        "docker/Dockerfile-proxy",
         "-t",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA", # イメージ名
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
         ".",
       ]
   # アプリケーション用イメージのpush
@@ -48,8 +50,6 @@ steps:
         "cloudsql-credentials,/etc/cloudsql",
         "--container",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
-        "--container-dependency",
-        "forum-php-mysql=cloud-sql-proxy",
         "--port",
         "80",
       ]
