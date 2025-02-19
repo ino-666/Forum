@@ -4,4 +4,4 @@ FROM alpine:latest
 RUN apk add --no-cache cloud-sql-proxy
 
 # プロキシの起動
-CMD ["/cloud_sql_proxy", "-instances=your-cloud-sql-connection-name=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
+CMD ["/cloud_sql_proxy", "-instances=forum-app-db01=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
