@@ -1,7 +1,3 @@
-FROM alpine:latest
+FROM gcr.io/cloud-sql-proxy/cloud-sql-proxy:latest
 
-# Cloud SQL 接続用プロキシのインストール
-RUN apk add --no-cache cloud-sql-proxy
-
-# プロキシの起動
-CMD ["/cloud_sql_proxy", "-instances=forum-app-db01=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
+CMD ["/cloud_sql_proxy", "-instances=forum-cloudrun-cloudsql:us-central1:forum-app-db01=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
