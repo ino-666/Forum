@@ -38,17 +38,17 @@ steps:
   # Cloud Run へのデプロイ
   - name: "gcr.io/cloud-builders/gcloud"
     args:
-    [
-      "run",
-      "deploy",
-      "forum-php-mysql",
-      "--container",
-      "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
-      "--image",
-      "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
-      "--port",
-      "80",
-    ]
+      [
+        "run",
+        "deploy",
+        "forum-php-mysql",
+        "--container",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
+        "--image",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
+        "--port",
+        "80",
+      ]
 images:
   - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA"
   - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA"
