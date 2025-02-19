@@ -1,0 +1,7 @@
+FROM alpine:latest
+
+# Cloud SQL 接続用プロキシのインストール
+RUN apk add --no-cache cloud-sql-proxy
+
+# プロキシの起動
+CMD ["/cloud_sql_proxy", "-instances=your-cloud-sql-connection-name=tcp:3306", "-credential_file=/etc/cloudsql/credentials.json"]
