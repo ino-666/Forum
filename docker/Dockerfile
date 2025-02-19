@@ -25,3 +25,6 @@ RUN chown -R www-data:www-data /var/www/html
 
 # ポート80を公開
 EXPOSE 80
+
+# アプリケーションの起動 (Apache)
+CMD ["apache2-foreground"]

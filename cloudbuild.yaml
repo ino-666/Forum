@@ -1,30 +1,64 @@
 steps:
-  - name: "gcr.io/cloud-builders/git"
-    args: ["ls-tree", "-r", "HEAD"]
+  # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
+    args: [
         "build",
         "-f",
-        "docker/Dockerfile",
+        "Forum/Docker/Dockerfile", # アプリケーション用 Dockerfile
         "-t",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:$COMMIT_SHA",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA", # イメージ名
         ".",
       ]
-
+  #  Cloud SQL 接続用プロキシのイメージのビルド
+  - name: "gcr.io/cloud-builders/docker"
+    args: [
+        "build",
+        "-f",
+        "Forum/Docker/Dockerfile-proxy", # Cloud SQL 接続用プロキシ Dockerfile
+        "-t",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA", # イメージ名
+        ".",
+      ]
+  # アプリケーション用イメージのpush
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:$COMMIT_SHA",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
+      ]
+  # Cloud SQL 接続用プロキシ用イメージのpush
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
+      ]
+  # Cloud Run へのデプロイ
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "forum-php-mysql",
+        "--image",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
+        "--add-volume",
+        "cloudsql-credentials,type=secret,secret=forum-seacret",
+        "--add-volume-mount",
+        "cloudsql-credentials,/etc/cloudsql",
+        "--container",
+        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
+        "--container-dependency",
+        "forum-php-mysql=cloud-sql-proxy",
+        "--port",
+        "80",
       ]
 images:
-  - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:$COMMIT_SHA"
+  - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA"
+  - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA"
 logsBucket: "gs://forum-cloudbuild-log-cs"
 options:
   logging: GCS_ONLY
 substitutions:
   _REGION: "us-central1" # GCPのリージョン
   _REPO_NAME: "forum-docker" # Artifact Registry のリポジトリ名
-  _IMAGE_NAME: "forum-php-mysql" # ビルドするDockerイメージ名
-
