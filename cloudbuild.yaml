@@ -1,4 +1,8 @@
 steps:
+  # gcloud のリージョン設定
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["config", "set", "run/region", "$_REGION"]
+
   # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -10,6 +14,7 @@ steps:
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
         ".",
       ]
+
   # Cloud SQL 接続用プロキシのイメージのビルド
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -21,26 +26,23 @@ steps:
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
         ".",
       ]
-  # アプリケーション用イメージのpush
+
+  # アプリケーション用イメージの push
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
       ]
-  # Cloud SQL 接続用プロキシ用イメージのpush
+
+  # Cloud SQL 接続用プロキシ用イメージの push
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
       ]
-  # gcloud を最新バージョンに更新
-  - name: "gcr.io/cloud-builders/gcloud"
-    args: ["components", "update", "--quiet"]
-  # Cloud Run のリージョンを設定
-  - name: "gcr.io/cloud-builders/gcloud"
-    args: ["config", "set", "run/region", "$_REGION"]
+
   # Cloud Run へのデプロイ
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -48,23 +50,22 @@ steps:
         "run",
         "deploy",
         "forum-php-mysql",
-        "--region",
-        "$_REGION",
-        "--container",
-        "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
         "--image",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA",
-        "--port",
-        "80",
-        "--region",
-        "$_REGION",
+        "--region=$_REGION",
+        "--platform=managed",
+        "--port=80",
       ]
+
 images:
   - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/forum-php-mysql:$COMMIT_SHA"
   - "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA"
+
 logsBucket: "gs://forum-cloudbuild-log-cs"
+
 options:
   logging: GCS_ONLY
+
 substitutions:
   _REGION: "us-central1" # GCPのリージョン
   _REPO_NAME: "forum-docker" # Artifact Registry のリポジトリ名
