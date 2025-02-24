@@ -35,9 +35,11 @@ steps:
         "push",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
       ]
+  # Cloud Run のリージョンを設定
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["config", "set", "run/region", "$_REGION"]
   # Cloud Run へのデプロイ
   - name: "gcr.io/cloud-builders/gcloud"
-  args: ["config", "set", "run/region", "$_REGION"]
     args:
       [
         "run",
