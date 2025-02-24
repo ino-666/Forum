@@ -1,7 +1,4 @@
 steps:
-  # gcloud のリージョン設定
-  - name: "gcr.io/cloud-builders/gcloud"
-    args: ["config", "set", "run/region", "$_REGION"]
   # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -38,6 +35,12 @@ steps:
         "push",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
       ]
+  # gcloud を最新バージョンに更新
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["components", "update", "--quiet"]
+  # Cloud Run のリージョンを設定
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["config", "set", "run/region", "$_REGION"]
   # Cloud Run へのデプロイ
   - name: "gcr.io/cloud-builders/gcloud"
     args:
