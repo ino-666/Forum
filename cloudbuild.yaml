@@ -37,6 +37,7 @@ steps:
       ]
   # Cloud Run へのデプロイ
   - name: "gcr.io/cloud-builders/gcloud"
+  args: ["config", "set", "run/region", "$_REGION"]
     args:
       [
         "run",
