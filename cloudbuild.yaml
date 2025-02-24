@@ -1,8 +1,4 @@
 steps:
-  # gcloud コンポーネントの更新
-  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    entrypoint: gcloud
-    args: ["components", "update"]
   # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -46,6 +42,8 @@ steps:
         "run",
         "deploy",
         "forum-php-mysql",
+        "--region",
+        "$_REGION",
         "--container",
         "$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
         "--image",
