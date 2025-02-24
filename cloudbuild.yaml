@@ -1,4 +1,8 @@
 steps:
+  # gcloud コンポーネントの更新
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args: ["components", "update"]
   # アプリケーション用イメージのビルド
   - name: "gcr.io/cloud-builders/docker"
     args:
@@ -39,7 +43,6 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
-        "beta",
         "run",
         "deploy",
         "forum-php-mysql",
