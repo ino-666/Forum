@@ -39,6 +39,7 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
+        "beta",
         "run",
         "deploy",
         "forum-php-mysql",
