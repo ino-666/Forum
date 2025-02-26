@@ -55,6 +55,8 @@ steps:
         "--region=$_REGION",
         "--platform=managed",
         "--port=80",
+        "--add-container",
+        "cloud-sql-proxy=$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/cloud-sql-proxy:$COMMIT_SHA",
       ]
 
 images:
